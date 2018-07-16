@@ -1,0 +1,24 @@
+
+install client ubuntu server
+add desktop: sudo apt-get install ubuntu-desktop
+add chromium:  "add software"
+
+
+install server ubuntu server
+apt update
+add npm
+
+create web folder and go to it
+npm init
+install express with:  npm install express --save
+
+create the entry point file / index.js if left default with the following 4 lines:
+
+const express = require('express')
+const app = express()
+app.get('/', (req, res) => res.send('Hello World!'))
+app.listen(80, () => console.log('Example app listening on port 80!'))
+
+RUN web service with:
+node index.js   |  note this assumes walking through:  https://gist.github.com/isaacs/579814
+or will have to sudo node index.js  which is an extremely bad setup  unless you want the server hacked 
