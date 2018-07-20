@@ -1,0 +1,10 @@
+
+
+openssh keys need to be converted to work in putty.
+
+if you have a openssh key:
+
+go to putty ->connection -> data -> auto login name    should be set to username
+
+next open up:   puttygen      ->  conversion -> open key     and locate the private key file   .
+ save a ppk file
