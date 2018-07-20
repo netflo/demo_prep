@@ -1,0 +1,12 @@
+
+
+use built in script:
+
+on the machine with your ID  (for example from a    ssh-keygen  -t rsa -b 4096 )
+ssh-copy-id username@remote_host   (where you want key auth)
+
+this will copy across your pub key 
+if you can then login without a password issuing a:  ssh username@remote_host,   then it is working
+and you could/ought to switch off  the password based auth if you know what you are doing with:   
+     PasswordAuthentication no     into   /etc/ssh/sshd_config
+sudo systemctl restart ssh     will complete the removal of pass auth.
