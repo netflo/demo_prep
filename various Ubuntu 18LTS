@@ -46,3 +46,24 @@ sort authentication or test by disabling auth:  kubectl proxy --address='{ip}' -
 
 and browse URL is:    
 http://{ip}:9090/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
+
+
+#how to get dashboard token to login:
+
+kubectl -n kube-system get secret | grep deploym
+deployment-controller-token-fv7rj                kubernetes.io/service-account-token    
+
+and then use with:   kubectl -n kube-system describe secret deployment-controller-token-fv7rj
+Name:         deployment-controller-token-fv7rj
+Namespace:    kube-system
+Labels:       <none>
+Annotations:  kubernetes.io/service-account.name=deployment-controller
+              kubernetes.io/service-account.uid=4723952b-b474-11e8-a2bf-080127c12be9
+
+Type:  kubernetes.io/service-account-token
+
+Data
+====
+ca.crt:     1025 bytes
+namespace:  11 bytes
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.
