@@ -2,6 +2,16 @@
 change hostname after reboot:
 sudo hostnamectl set-hostname mgt-box
 
+and if you check for the existence of /etc/cloud/cloud.cfg configuration. 
+If the file exists edit the file and change the settings within:
+
+FROM:
+preserve_hostname: false
+TO:
+preserve_hostname: true
+
+
+
 check what ubuntu spec a machine is:   
 hostnamectl
 
