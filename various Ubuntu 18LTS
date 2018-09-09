@@ -31,3 +31,9 @@ and look like this:
 
 %sudo  ALL=(ALL:ALL) NOPASSWD: ALL
 
+
+========== SWAP REMOVAL FOR DOCKER/KUBE
+
+run swapoff -a : this will immediately disable swap.
+remove any swap entry from /etc/fstab.
+reboot the system.
