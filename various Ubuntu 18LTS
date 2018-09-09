@@ -1,4 +1,4 @@
-
+=============== HOSTNAME ================
 change hostname after reboot:
 sudo hostnamectl set-hostname mgt-box
 
@@ -15,4 +15,19 @@ preserve_hostname: true
 check what ubuntu spec a machine is:   
 hostnamectl
 
+=========================  SUDO ================
+
+To add a user to SUDO
+usermod -aG sudo {username}
+
+To allow SUDO capable users to not be prommpted for users (useful with Ansible remove job)
+
+sudo visudo
+ We need to edit the line
+
+%sudo   ALL=(ALL:ALL) ALL
+
+and look like this:
+
+%sudo  ALL=(ALL:ALL) NOPASSWD: ALL
 
