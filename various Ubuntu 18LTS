@@ -1,0 +1,8 @@
+
+change hostname after reboot:
+sudo hostnamectl set-hostname mgt-box
+
+check what ubuntu spec a machine is:   
+hostnamectl
+
+
