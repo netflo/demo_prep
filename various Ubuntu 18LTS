@@ -37,3 +37,8 @@ and look like this:
 run swapoff -a : this will immediately disable swap.
 remove any swap entry from /etc/fstab.
 reboot the system.
+
+######### KUBE DASHBOARD ADD ON ###########
+
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl proxy
