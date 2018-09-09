@@ -42,3 +42,5 @@ reboot the system.
 
 kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 kubectl proxy
+
+and browse URL is:    http://host:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
