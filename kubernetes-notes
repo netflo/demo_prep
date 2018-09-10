@@ -1,0 +1,11 @@
+
+installing Kube dashboard:
+
+
+start the proxy:
+kubectl proxy -p 8008 --address='192.168.1.136' --disable-filter=true
+
+
+now get the token to access remotely
+
+kubectl get services -n kube-system
