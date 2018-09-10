@@ -2,10 +2,69 @@
 installing Kube dashboard:
 
 
+export KUBECONFIG=/etc/kubernetes/admin.conf
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+
 start the proxy:
 kubectl proxy -p 8008 --address='192.168.1.136' --disable-filter=true
 
 
-now get the token to access remotely
-
+now verify 
 kubectl get services -n kube-system
+
+
+Once the Dashboard is created verify the svc/deployments are up and running
+Verify Dashboard Service is running
+kubectl get services -n kube-system
+
+
+get the token to access remotely ...
+
+
+
+cat dashboard-admin.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: kubernetes-dashboard
+  labels:
+    k8s-app: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: kubernetes-dashboard
+  namespace: kube-system
+
+then:
+kubectl create -f dashboard-admin.yaml
+
+
+kubectl proxy --address 0.0.0.0 --accept-hosts '.*'
+
+#create a service account:
+kubectl create serviceaccount k8sadmin -n kube-system
+kubectl create clusterrolebinding k8sadmin --clusterrole=cluster-admin --serviceaccount=kube-system:k8sadmin
+
+
+kubectl get secret -n kube-system | grep k8sadmin | cut -d " " -f1 | xargs -n 1 | xargs kubectl get secret  -o 'jsonpath={.data.token}' -n kube-system | base64 --decode
+
+
+
+if wanted to delete:
+
+Delete Kubernetes dashboard Servcie
+
+check from where the service needs to be deleted daemonsets,replicasets,services,deployments,pods,rc --all
+
+kubectl delete replicasets/kubernetes-dashboard -n kube-system
+kubectl delete svc/kubernetes-dashboard -n kube-system
+kubectl delete deployments/kubernetes-dashboard -n kube-system
+kubectl -n kube-system delete $(kubectl -n kube-system get pod -o name | grep dashboard)
+
+
+
+
+
